@@ -1,0 +1,22 @@
+---
+title: "Frederik Kjøller Larsen"
+image: "images/image_of_me.jpg"
+links:
+  - label: Email
+    url: "mailto:fkl@ifs.ku.dk"
+  - label: Twitter
+    url: "https://twitter.com/fkjoellerlarsen"
+  - label: GitHub
+    url: "https://github.com/fkjoellerlarsen"
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=2jFLHrgAAAAJ&hl=da&oi=ao"
+output:
+  postcards::trestles
+site: distill::distill_website
+---
+
+Welcome to my website. Thanks for stopping by! I am a PhD Fellow at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/) and Visiting Fellow at [Department of Government, Harvard University](https://scholar.harvard.edu/jsnyder/home).
+
+My research revolves around politicians private benefits and downsides of serving in office and what this means for the composition of the political class, i.e. its' quality and representation. I study this in Denmark and am delighted to work with rich registry data from the Danish authorities. I deploy various types of quasi-experiments and traditional experiments to derive credible conclusions about the realm of politics.
+
+My PhD is supervised by Professor [Lene Holm Pedersen](https://politicalscience.ku.dk/staff/Academic_staff/?pure=en/persons/16215) and Assistant Professor [Jens Olav Dahlgaard](https://jodahlgaard.com/) and my Visiting Fellowship at Harvard is sponsored by Professor [James Snyder](https://scholar.harvard.edu/jsnyder/home).

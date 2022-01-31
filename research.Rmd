@@ -1,0 +1,54 @@
+---
+title: "Research"
+output: distill::distill_article
+---
+
+Here you can find my research -- published articles (yes, okay there's only one for now) as well as stuff I am working on at the moment. Reach out to me at fkl[at]ifs[dot]ku[dot]dk if want to a copy of one of my working papers.
+
+<p>
+
+### Published work
+
+Greve-Poulsen, K., **Larsen, F. K.**, Pedersen, R. T., & Albæk, E. (2021). **No Gender Bias in Audience Perceptions of Male and Female Experts in the News: Equally Competent and Persuasive**. *The International Journal of Press/Politics*, OnlineFirst.
+
+* [Open Access version](https://portal.findresearcher.sdu.dk/en/publications/no-gender-bias-in-audience-perceptions-of-male-and-female-experts)
+* [Code and replication data](https://t.co/VNDcuQ8Lnz)
+
+<p>
+
+### Work in progress 
+
+__Reward or Punishment? The Distribution of Returns to Political Office__ with Jens Olav Dahlgaard and Nicolai Kristensen
+
+* We estimate the economic returns to winning office focusing on close winning and losing candidates running for Danish national elections. We devote special attention to 1) effect heterogeneity among candidates with different pre-office income potentials and 2) the timing of returns to office, as some economic consequences of holding office occur immediately when entering office while others occur later in life.
+
+<p>
+
+__Do Elected Women Candidates Foster Increased Female Political Representation?__
+with Jens Olav Dahlgaard, Benjamin Egerod and Lene Holm Pedersen.
+
+* We investigate if the election of a woman for office foster female representation in future elections and beyond the candidate herself. We do this by focusing on local elections, where a woman marginally wins a seat over a man competing for the same seat, and estimate what this means to the composition of the future candidate pools and thus how it shapes the supply of political candidates.
+
+<p>
+
+__Amateurs in office: What Are the Returns to a Part-time Political Office?__
+
+* I estimate how holding a part-time political office affect income and civil career of Danish local councilors. Concerning the latter, I specifically investigate what being a local councilor do to the councilors labour supply and probability of being promoted conditional on sector of employment.
+
+<p>
+
+__Does Policy Motivation Shape Political Careers? Evidence from a Quasi-Experiment__
+
+* I estimate the effect of increased policy discretion on incumbents' decision to rerun for office to test how policy motivation affect political careers.
+
+<p>
+
+__Government Ideology and Gender Equality in Public Sector Promotions__ with Lasse Aaskoven and Benjamin Egerod
+
+* We estimate how women’s career progression in the Danish bureaucracy depend on the ideology of the government in office.
+
+<p>
+
+__The Price of Power: Politicians’ Trade-Off Between Political Power, Remuneration, Time-Consumption and (Non-Sexistic) Work Environment in Local Governments__ with Lene Holm Pedersen
+
+* We investigate how political candidates' trade-off four important dimensions of holding political office, namely 1) political power, 2) remuneration, 3) work load and 4) quality of work environment. We study this by using a conjoint-choice experiment fielded among the political candidates in the Danish municipal election in November 2021.
