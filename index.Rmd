@@ -9,7 +9,7 @@ links:
   - label: GitHub
     url: "https://github.com/fkjoellerlarsen"
   - label: Google Scholar
-    url: "https://scholar.google.com/citations?user=2jFLHrgAAAAJ&hl=da&oi=ao"
+    url: "https://scholar.google.com/citations?user=2jFLHrgAAAAJ&hl=en&oi=ao"
 output:
   postcards::trestles
 site: distill::distill_website
