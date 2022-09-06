@@ -17,8 +17,10 @@ output:
 site: distill::distill_website
 ---
 
-Welcome to my website. Thanks for stopping by! I am a PhD Fellow at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/) and Visiting Fellow at [Department of Government, Harvard University](https://scholar.harvard.edu/jsnyder/home).
+Welcome to my website and thanks for stopping by!
+
+I am a PhD Candidate at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/). During my PhD, I have been a Visiting Researcher at [Department of Government, Harvard University](https://gov.harvard.edu) and [Department of International Economics, Government and Business, Copenhagen Business School](https://www.cbs.dk/en/research/departments-and-centres/department-of-international-economics-government-and-business).
 
 My research revolve around politicians' private benefits and downsides of serving in office and how this affect the political system and the composition of the political class, i.e. its' quality and scope of representation. I study this in Denmark and am delighted to work with rich registry data from the Danish authorities. I deploy various types of quasi-experiments and traditional experiments to derive credible conclusions about the realm of politics.
 
-My PhD is supervised by Professor [Lene Holm Pedersen](https://politicalscience.ku.dk/staff/Academic_staff/?pure=en/persons/16215) and Assistant Professor [Jens Olav Dahlgaard](https://jodahlgaard.com/) and my Visiting Fellowship at Harvard is sponsored by Professor [James Snyder](https://scholar.harvard.edu/jsnyder/home).
+My PhD is supervised by Professor [Lene Holm Pedersen](https://politicalscience.ku.dk/staff/Academic_staff/?pure=en/persons/16215) and Assistant Professor [Jens Olav Dahlgaard](https://jodahlgaard.com/) and Professor [James Snyder](https://scholar.harvard.edu/jsnyder/home) was my sponsor at Harvard.

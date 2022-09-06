@@ -1,0 +1,497 @@
+
+rm(list =ls())
+
+library(tidyverse)
+library(rio)
+setwd("/Users/frederikkjollerlarsen/Dropbox/PhD/papers/conjoint")
+#setwd("C:/Users/zpv283/Dropbox/PhD/papers/conjoint")
+#load("data/df_long_manipulated.rdata")
+load("data/df_background_manipulated.rdata")
+
+# only include completed answers - and answers given before deadline
+# 2021-12-20 21:49:52 was the last response within the time frame
+df_background <- df_background %>% 
+  filter(SurveyStatus==2)
+
+df_background <- df_background %>% 
+  filter(SurveyEndTime<="2021-12-20 21:49:52")
+
+### create descriptive plots
+
+
+####### working hours
+sample_shares <- df_background %>%
+  mutate(working_hours = ifelse(working_hours>50,50,working_hours)) %>% 
+  count(working_hours) %>% 
+  mutate(prop_hours = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  mutate(working_hours = ifelse(working_hours>50,50,working_hours)) %>% 
+  count(sex, working_hours) %>% 
+  group_by(sex) %>% 
+  mutate(prop_hours = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>%
+  mutate(working_hours = ifelse(working_hours>50,50,working_hours)) %>% 
+  ggplot(data=., aes(x=working_hours, y=prop_hours, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Self-assessed work load of political duties - weekly hours") +
+  ylab("Share") +
+  xlab("Hours pr. week") +
+  scale_fill_grey() +
+  scale_color_grey() +
+  #facet_grid(cols = sex) +
+  facet_wrap(~sex, ncol = 1) +
+  theme(legend.position = "none", panel.background = element_rect(fill = "white"),
+        strip.background = element_rect("white"),
+        strip.text = element_text(hjust = 0, face = "bold"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+ggsave("plots/workinghours.pdf", height = 4, width = 8)
+
+
+##### education
+sample_shares <- df_background %>%
+  count(education) %>% 
+  mutate(prop_edu = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, education) %>% 
+  group_by(sex) %>% 
+  mutate(prop_edu = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares) %>%
+  mutate(education = as.character(education)) %>% 
+  mutate(education = case_when(education=="Short, higher education (>3 years)"~"Short, higher\n(>3 years)",
+                               education=="Bachelor/professional degree"~"Professional or\nbachelor degree",
+                               TRUE~education)) %>% 
+  mutate(education = factor(education, levels = c("Primary School", "High School", "Vocational",
+                                                  "Short, higher\n(>3 years)",
+                                                  "Professional or\nbachelor degree",
+                                                  "Long, higher", "Other")))
+
+
+shares %>% 
+  ggplot(data=., aes(x=education, y=prop_edu, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Highest educational degree achieved") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  #theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  coord_cartesian(ylim=c(0,0.4)) +
+  geom_text(aes(label = round(prop_edu,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/education.pdf", height = 4, width = 8)
+
+##### AGE
+sample_shares <- df_background %>%
+  count(age) %>% 
+  mutate(prop_age = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, age) %>% 
+  group_by(sex) %>% 
+  mutate(prop_age = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>% 
+  ggplot(data=., aes(x=age, y=prop_age, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Candidate age") +
+  ylab("Share") +
+  xlab("Age of candidate") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  scale_x_continuous(breaks = seq(20,80,10), labels = seq(20,80,10)) +
+  facet_wrap(~sex, ncol = 1) +
+  theme(legend.position = "none", panel.background = element_rect(fill = "white"),
+        strip.background = element_rect("white"),
+        strip.text = element_text(hjust = 0, face = "bold"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+ggsave("plots/age.pdf", height = 4, width = 8)
+
+##### MARITAL STATUS
+sample_shares <- df_background %>%
+  count(marital_status) %>% 
+  mutate(prop_marital = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, marital_status) %>% 
+  group_by(sex) %>% 
+  mutate(prop_marital = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>% 
+  ggplot(data=., aes(x=marital_status, y=prop_marital, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Marital status") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  #theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  geom_text(aes(label = round(prop_marital,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  coord_cartesian(ylim=c(0,0.7)) +
+  scale_y_continuous(labels = seq(0,0.7,0.1), breaks = seq(0,0.7,0.1)) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/maritalstatus.pdf", height = 4, width = 8)
+
+
+##### ELECTORAL PERFORMANCE
+sample_shares <- df_background %>%
+  count(electoral_performance) %>% 
+  mutate(prop_elec = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, electoral_performance) %>% 
+  group_by(sex) %>% 
+  mutate(prop_elec = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares) %>% 
+  mutate(electoral_performance = case_when(electoral_performance=="Not elected, but elected previously"~"Not elected, but \nelected previously",
+                                           electoral_performance=="Not elected, not elected previously"~"Not elected, not \nelected previously",
+                                           TRUE~electoral_performance))
+
+shares %>% 
+  ggplot(data=., aes(x=electoral_performance, y=prop_elec, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Electoral performance in 2021 election") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  #theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  scale_y_continuous(labels = seq(0,0.7,0.1), breaks = seq(0,0.7,0.1)) +
+  coord_cartesian(ylim=c(0,0.6)) +
+  geom_text(aes(label = round(prop_elec, digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/electoralperformance.pdf", height = 4, width = 8)
+
+
+##### IDEOLOGY
+sample_shares <- df_background %>%
+  count(ideology) %>% 
+  mutate(prop_ideo = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, ideology) %>% 
+  group_by(sex) %>% 
+  mutate(prop_ideo = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>% 
+  ggplot(data=., aes(x=ideology, y=prop_ideo, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.3)) +
+  theme_bw() +
+  #ggtitle("Electoral performance in 2021 election") +
+  ylab("Share") +
+  xlab("Ideology (0 = most leftwing, 10 = most rightwing)") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  scale_y_continuous(labels = seq(0,0.25,0.05), breaks = seq(0,0.25,0.05)) +
+  scale_x_continuous(labels = seq(0,10,1), breaks = seq(0,10,1)) +
+  coord_cartesian(ylim = c(0,0.2)) +
+  #facet_wrap(~sex, ncol = 2) +
+  facet_wrap(~sex, ncol = 1) +
+  theme(legend.position = "right", panel.background = element_rect(fill = "white"),
+        strip.background = element_rect("white"),
+        strip.text = element_text(hjust = 0, face = "bold"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+ggsave("plots/ideology.pdf", height = 4, width = 8)
+
+
+## plot for victims (1 or more incidents)
+sample_shares <- df_background %>%
+  count(victim) %>% 
+  mutate(prop_victim = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, victim) %>% 
+  group_by(sex) %>% 
+  mutate(prop_victim = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>% 
+  ggplot(data=., aes(x=victim, y=prop_victim, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Victims of one of more types of harassment") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  geom_text(aes(label = round(prop_victim,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  scale_y_continuous(labels = seq(0,1,0.1), breaks = seq(0,1,0.1)) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/victims.pdf", height = 4, width = 8)
+
+
+##### Victim - Harassment questionnarire - make seperate long data frame to facet on question
+df_sexual_wide <- df_background %>% 
+  select(c(id, sex, starts_with("kraenkelser")))
+
+df_sexual <- df_sexual_wide %>% 
+  pivot_longer(cols = !c(id,sex),
+               names_to = c("question"),
+               #names_sep = "_",
+               values_to = "answer")
+
+##  add labels to questionarie about sexual harassment
+df_sexual <- df_sexual %>% 
+  mutate(question = case_when(question=="kraenkelser_1_resp"~"Unwanted or degrading comments \nabout own body or sex",
+                              question=="kraenkelser_2_resp"~"Being called names or mentioned \nin degrading ways",
+                              question=="kraenkelser_3_resp"~"Being told that your voice is high-pitched \nor that you talked too much",
+                              question=="kraenkelser_4_resp"~"To be sent or shown material with sexual \ncontent which was unwanted or offensive \nfor you",
+                              question=="kraenkelser_5_resp"~"Unwanted physical touches"),
+         answer = case_when(answer==1~"Yes",
+                            answer==2~"No",
+                            answer==3~"No")) %>% # put "don't want to answer" as
+  mutate(question = factor(question, levels = c("Unwanted or degrading comments \nabout own body or sex",
+                                                "Being called names or mentioned \nin degrading ways",
+                                                "Being told that your voice is high-pitched \nor that you talked too much",
+                                                "To be sent or shown material with sexual \ncontent which was unwanted or offensive \nfor you",
+                                                "Unwanted physical touches")),
+         answer = factor(answer, levels = c("No", "Yes", "Don't want to answer")))
+
+# barplot over answer faceteret på question - og med fill = sex
+# create shares of men, women and full sample
+sample_shares_battery <- df_sexual %>%
+  count(question, answer) %>%
+  group_by(question) %>% 
+  mutate(prop_answer = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares_battery <- df_sexual %>% 
+  count(sex, question, answer) %>% 
+  group_by(question, sex) %>% 
+  mutate(prop_answer = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+# add battery answers to aggregated df
+shares_battery <- bind_rows(sample_shares_battery, subset_shares_battery)
+
+# add overall victimhood to graph over battery answers
+# add label
+shares <- shares %>% 
+  mutate(question = "Victims in total",
+         answer = ifelse(victim=="Victim","Yes","No")) %>% 
+  rename(prop_answer = prop_victim)
+
+shares_total <- bind_rows(shares_battery, shares) %>% 
+  mutate(question = factor(question, levels = c("Unwanted or degrading comments \nabout own body or sex",
+                                                "Being called names or mentioned \nin degrading ways",
+                                                "Being told that your voice is high-pitched \nor that you talked too much",
+                                                "To be sent or shown material with sexual \ncontent which was unwanted or offensive \nfor you",
+                                                "Unwanted physical touches",
+                                                "Victims in total")))
+
+### bar plot - faceted on type of harassment
+shares_total %>% 
+  filter(answer=="Yes") %>%
+  filter(question!="Victims in total") %>% 
+  ggplot(data=., aes(x=answer, y=prop_answer, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Experiences with sexual harrassment") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  facet_wrap(~question, ncol = 3) +
+  scale_y_continuous(labels = seq(0,0.5,0.05), breaks = seq(0,0.5,0.05)) +
+  coord_cartesian(ylim = c(0,0.5)) +
+  geom_text(aes(label = round(prop_answer,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "top",
+        panel.background = element_rect(fill = "white"),
+        strip.background = element_rect("white"),
+        strip.text = element_text(hjust = 0),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+ggsave("plots/harassment_experience.pdf", height = 4, width = 8)
+
+
+### bar plot - faceted on type of harassment AND TOTAL VICTIM COUNT
+shares_total %>% 
+  filter(answer=="Yes") %>%
+  ggplot(data=., aes(x=answer, y=prop_answer, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Experiences with sexual harrassment") +
+  ylab("Share") +
+  xlab("") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  facet_wrap(~question, ncol = 3) +
+  scale_y_continuous(labels = seq(0,0.5,0.05), breaks = seq(0,0.5,0.05)) +
+  coord_cartesian(ylim = c(0,0.5)) +
+  geom_text(aes(label = round(prop_answer,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "top",
+        panel.background = element_rect(fill = "white"),
+        strip.background = element_rect("white"),
+        strip.text = element_text(hjust = 0),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank())
+
+ggsave("plots/harassment_experience_total.pdf", height = 5, width = 8)
+
+
+
+
+
+## plot for victimhood intensity distribution in sample and men/women 
+sample_shares <- df_background %>%
+  count(victimhood_intensity) %>% 
+  mutate(prop_victim = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>% 
+  count(sex, victimhood_intensity) %>% 
+  group_by(sex) %>% 
+  mutate(prop_victim = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+# add zero column for men with 5 types of experiences (so bars have same width in the plot)
+extra_row <- tibble(victimhood_intensity = 5, n = 0, prop_victim = 0, sex = "Men")
+
+shares <- bind_rows(sample_shares, subset_shares, extra_row) %>% 
+  mutate(victimhood_intensity = factor(victimhood_intensity))
+
+shares %>% 
+  filter(victimhood_intensity!="0") %>% 
+  ggplot(data=., aes(x=victimhood_intensity, y=prop_victim, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Distribution of victims for # types of harassment") +
+  ylab("Share of victims") +
+  xlab("# types of harassment experienced") +
+  scale_fill_grey("", drop = FALSE) +
+  #scale_color_discrete("", drop = FALSE) +
+  #facet_wrap(~question, ncol = 2) +
+  coord_cartesian(ylim=c(0,0.2)) +
+  scale_y_continuous(labels = seq(0,1,0.02), breaks = seq(0,1,0.02)) +
+  geom_text(aes(label = round(prop_victim,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/victimhood_intensity.pdf", height = 4, width = 8)
+
+
+## create a cumulative plot of victimhood intensity (essentially showing the distribution of victims given more strict definitions)
+
+## cumulate props and then create plots (without a column for non-victims who are the benchmark to the numbers of all other columns)
+  
+shares %>% 
+  arrange(desc(victimhood_intensity)) %>% 
+  group_by(sex) %>%
+  mutate(cumulative_prop_victim = cumsum(prop_victim)) %>% 
+  filter(victimhood_intensity!=0) %>% 
+  ggplot(data=., aes(x=victimhood_intensity, y=cumulative_prop_victim, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Share of victims when # of harassing experiences increases") +
+  ylab("Share of victims") +
+  xlab("Minimum # of types of harassment experienced") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  #facet_wrap(~question, ncol = 2) +
+  scale_y_continuous(labels = seq(0,1,0.05), breaks = seq(0,1,0.05)) +
+  geom_text(aes(label = round(prop_victim,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/victims_increasing_victimhood.pdf", height = 4, width = 8)
+
+##### Assessed risk of sexual harassment
+sample_shares <- df_background %>%
+  count(harassment_risk) %>% 
+  mutate(prop_risk = prop.table(n)) %>% 
+  mutate(sex = factor("Full Sample"))
+
+subset_shares <- df_background %>%
+  filter(harassment_risk!="Do not know") %>% 
+  count(sex, harassment_risk) %>% 
+  group_by(sex) %>% 
+  mutate(prop_risk = prop.table(n)) %>% 
+  mutate(sex = factor(ifelse(sex=="Man","Men","Women")))
+
+shares <- bind_rows(sample_shares, subset_shares)
+
+shares %>%
+  filter(harassment_risk!="Do not know") %>% 
+  ggplot(data=., aes(x=harassment_risk, y=prop_risk, fill = sex)) +
+  geom_col(color = "black", position = position_dodge2(width = 0.2)) +
+  theme_bw() +
+  #ggtitle("Self-assessed risk of being sexually assualted or \nharassed in political work") +
+  labs(y = "Share", x = "") +
+  xlab("Self-assessed risk of victimization of sexual harassment in political work") +
+  scale_fill_grey("") +
+  scale_color_grey("") +
+  geom_text(aes(label = round(prop_risk,digits = 2)),
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  scale_y_continuous(labels = seq(0,0.7,0.1), breaks = seq(0,0.7,0.1)) +
+  theme(legend.position = "right",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+
+ggsave("plots/harassmentrisk.pdf", height = 4, width = 8)

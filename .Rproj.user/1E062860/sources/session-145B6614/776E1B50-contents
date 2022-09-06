@@ -79,3 +79,15 @@ d-appendix {
 .posts-list .metadata .publishedDate {
     color: rgb(249, 83, 85);
 }
+
+/* Line spacing 
+.adjust-line-height {
+  line-height: 1em;
+}*/
+
+/* Use specific font in the body of the text */
+/*html, body, p {
+    /*font-weight: 200;*/
+    /*line-height: 1rem;
+    /*font-style: normal;*/
+/*} */
