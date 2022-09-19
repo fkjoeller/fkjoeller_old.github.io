@@ -19,7 +19,7 @@ site: distill::distill_website
 
 Welcome to my website and thanks for stopping by!
 
-I am a PhD Candidate at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/). During my PhD, I have been Visiting Researcher at [Department of Government, Harvard University](https://gov.harvard.edu) and [Department of International Economics, Government and Business, Copenhagen Business School](https://www.cbs.dk/en/research/departments-and-centres/department-of-international-economics-government-and-business).
+I am a PhD Candidate at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/). During my PhD, I have been Visiting Researcher at [Department of International Economics, Government and Business, Copenhagen Business School](https://www.cbs.dk/en/research/departments-and-centres/department-of-international-economics-government-and-business) and [Department of Government, Harvard University](https://gov.harvard.edu).
 
 My research revolve around politicians' private benefits and downsides of serving in office and how this affect the political system and the composition of the political class, i.e. its' quality and scope of representation. I study this in Denmark and am delighted to work with rich registry data from the Danish authorities. I deploy various types of quasi-experiments and traditional experiments to derive credible conclusions about the realm of politics.
 
