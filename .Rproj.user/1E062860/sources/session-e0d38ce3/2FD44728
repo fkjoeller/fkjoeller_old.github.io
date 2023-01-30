@@ -1,26 +1,26 @@
 {
-    "id": "B1DA72F7",
-    "path": "~/Documents/GitHub/fkjoellerlarsen.github.io/research.Rmd",
-    "project_path": "research.Rmd",
+    "id": "2FD44728",
+    "path": "~/Documents/GitHub/fkjoellerlarsen.github.io/cv.Rmd",
+    "project_path": "cv.Rmd",
     "type": "r_markdown",
-    "hash": "2385082496",
+    "hash": "3828593528",
     "contents": "",
     "dirty": false,
-    "created": 1671020205552.0,
+    "created": 1675081630026.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "45,192",
-        "scrollLine": "40"
+        "cursorPosition": "5,108",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1671020318,
+    "lastKnownWriteTime": 1675081674,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1671020318743,
+    "last_content_update": 1675081674327,
     "read_only": false,
     "read_only_alternatives": []
 }
