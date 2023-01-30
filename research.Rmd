@@ -45,7 +45,7 @@ __Increased Representation of Women Improves The Electoral Performance of Politi
 
 * We investigate if the election of a woman for office foster female representation in future elections and beyond the candidate herself. We do this by focusing on local elections, where a woman marginally wins a seat over a man competing for the same seat, and estimate what this means to the composition of the future candidate pools and thus how it shapes the supply of political candidates.
 
-<p>
+<p> 
 
 __The Career Effects of Being a Part-time Officeholder__
 
