@@ -1,0 +1,26 @@
+---
+title: "Frederik Kjøller Larsen"
+image: "images/image_of_me.jpg"
+links:
+  - label: Email
+    url: "mailto:fkl@ifs.ku.dk"
+  - label: Twitter
+    url: "https://twitter.com/fkjoellerlarsen"
+  - label: GitHub
+    url: "https://github.com/fkjoellerlarsen"
+  - label: Google Scholar
+    url: "https://scholar.google.com/citations?user=2jFLHrgAAAAJ&hl=en&oi=ao"
+  - label: UCPH Profile
+    url: "https://politicalscience.ku.dk/staff/phd/?pure=en/persons/490612"
+output:
+  postcards::trestles
+site: distill::distill_website
+---
+
+Welcome to my website and thanks for stopping by!
+
+I am a PhD Candidate at [Department of Political Science, University of Copenhagen](https://politicalscience.ku.dk/). During my PhD, I have been Visiting Researcher at [Department of International Economics, Government and Business, Copenhagen Business School](https://www.cbs.dk/en/research/departments-and-centres/department-of-international-economics-government-and-business) and [Department of Government, Harvard University](https://gov.harvard.edu).
+
+My research concerns the consequences of political careers and what causes citizens to pursue a career in politics. These elements have important democratic implications, as they shape the dynamics of political system and the composition of the political class in terms of its' quality and scope of representation. I study this in Denmark and am delighted to work with rich registry data from the Danish authorities. I deploy various types of quasi-experiments and traditional experiments to derive credible conclusions about the realm of politics.
+
+My PhD is supervised by Professor [Lene Holm Pedersen](https://politicalscience.ku.dk/staff/Academic_staff/?pure=en/persons/16215) and I am expected to defend it in the Fall of 2023.
