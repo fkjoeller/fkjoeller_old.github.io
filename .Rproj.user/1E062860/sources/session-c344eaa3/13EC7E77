@@ -1,26 +1,26 @@
 {
-    "id": "E1CF6AF5",
+    "id": "13EC7E77",
     "path": "~/Documents/GitHub/fkjoellerlarsen.github.io/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "3027208782",
+    "hash": "3552602482",
     "contents": "",
     "dirty": false,
-    "created": 1696589491132.0,
+    "created": 1697560134170.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "25,286",
-        "scrollLine": "18"
+        "cursorPosition": "23,40",
+        "scrollLine": "15"
     },
     "folds": "",
-    "lastKnownWriteTime": 1696589547,
+    "lastKnownWriteTime": 1697560228,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1696589547237,
+    "last_content_update": 1697560228824,
     "read_only": false,
     "read_only_alternatives": []
 }
