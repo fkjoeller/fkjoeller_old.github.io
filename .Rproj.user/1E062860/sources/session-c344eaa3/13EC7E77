@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/fkjoellerlarsen.github.io/index.Rmd",
     "project_path": "index.Rmd",
     "type": "r_markdown",
-    "hash": "3552602482",
+    "hash": "704115778",
     "contents": "",
     "dirty": false,
     "created": 1697560134170.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "23,40",
-        "scrollLine": "15"
+        "cursorPosition": "14,18",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1697560228,
+    "lastKnownWriteTime": 1697626410,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1697560228824,
+    "last_content_update": 1697626410884,
     "read_only": false,
     "read_only_alternatives": []
 }
